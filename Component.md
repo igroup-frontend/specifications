@@ -31,7 +31,7 @@
 ## 使用方式需求
 
 ```tsx
-import {RedEnvelopeRain, RedEnvelopeRainPrivder} from '@kc/red-Envelope-rain'
+import {RedEnvelopeRain} from '@kc/red-Envelope-rain'
 
 /**
  * Sample Layout
