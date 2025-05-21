@@ -29,10 +29,11 @@
 - 如果規劃中 `B` 包含得獎畫面，則透過 `A`與`B`交換Token的方式 開啟新視窗 (類似啟動遊戲館)
 - 套件模式的使用者資訊
 
-> `A`前端 -> `A`後端 -> `B`後端 -> 返回`B`的Token 最終回到 `A`前端
+> `A`前端 -> `A`後端(API) -> `B`後端(API) -> 返回`B`的Token 最終回到 `A`前端
 > 
-> 然後以 `B` Token 的帶入到 `B`的套件的元件 Props中
+> 然後以 `B` 的Token 的帶入到 `B`的套件的元件 Props中
 
+是否需要 RefreshToken, 由B決定，若有則由`B`套件中自行實作。
 
 
 ## 使用方式需求
@@ -45,8 +46,10 @@ import {RedEnvelopeRain} from '@kc/red-Envelope-rain'
  */
 const ExamplePage = () => {
 
+    const gameAccessToken = '' // 呼叫A API取得
+
     const handleGoPlay = () => {
-        GameModal.show();
+        GameModal.show({accessToken: gameAccessToken});
     }
     
     return <div>
@@ -59,10 +62,16 @@ const ExamplePage = () => {
 }
 
 
+interface IGameModalProps {
+   accessToken: string
+}
+
 /**
  * 遊戲載入區塊
  */
-const GameModal = () => {
+const GameModal = ({
+   accessToken,
+}: IGameModalProps) => {
     const callApi = useAPIMuatation();
     const ref = useRef<RedEnvelopeRain>(null);
 
@@ -79,6 +88,7 @@ const GameModal = () => {
             ref={ref}
             autoPlay={false}
             onEnd={handleOnHide}
+            accessToken={accessToken}
         />; 
     </>;
 }
