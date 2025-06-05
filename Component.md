@@ -9,6 +9,7 @@
 ## 元件規格
 - `B`提供需支援 `ReactJS` v18.0 - v19.1
 - `B`提供需為 `React Component`/`Provider`
+- `B`需要提供一個語系的參數 (props), 參數名稱為 `locale`, 值為 `en-US` 或 `zh-CN` (BCP 47 結合語言與地區代碼格式)
 - `B`提供需支援 `Typescript` 或 `.d.ts` 安全型別
 - `B`需要提供 `Storybook` 作為開發者文件 與`A`確認互動效果
 - `B`需要上傳到 `NPM` 提供給`A`前端單位 進行 npm install, import 使用 (不需要提供 `SourceCode` 給`A`前端, 由`B`自行管理與維護)
@@ -89,6 +90,7 @@ const GameModal = ({
             autoPlay={false}
             onEnd={handleOnHide}
             accessToken={accessToken}
+            locale="en-US"
         />; 
     </>;
 }
